@@ -1,23 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Img from './img.jpg'
+import Creator from './creatos';
+
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container-sm" style={{ maxWidth: 450 }}>
+      <div style={{ marginTop: 100 }}></div>
+      <h1>Create an NFT</h1>
+      <form>
+        <div className="form-group">
+          <label>Name your piece</label>
+          <input value="Trippy" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readOnly/>
+        </div>
+
+        <div className="form-group">
+          <label>Image: </label>
+          <br />
+          <img src={Img} alt="imag" />
+        </div>
+
+        <div className="form-group">
+          <label>Price</label>
+          <input value="$100" className="form-control" id="exampleInputPassword1" readOnly/>
+        </div>
+
+        <div className="form-group">
+          <label>Creator(s)</label>
+          <Creator />
+
+        </div>
+
+      </form>
     </div>
   );
 }
