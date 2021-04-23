@@ -13,15 +13,21 @@ export default class Creator extends React.Component {
     addCreator() {
         owner_count++;
         this.setState({
-            creators: [...this.state.creators, { name: 'cryptogod', ownership: ' ' }]
+            creators: [...this.state.creators, { name: '', ownership: ' ' }]
         })
     };
 
+    deletCreator(e) {
+        var tempArr = this.state.creators;
+        tempArr.splice(e, 1);
+        this.setState({ creators: tempArr });
+    }
+
     changeOwnership(event) {
         //   change the current input
-        var newArr = this.state.creators;
-        newArr[event.target.id].ownership = event.target.value;
-        this.setState({ creators: newArr });
+        var tempArr = this.state.creators;
+        tempArr[event.target.id].ownership = event.target.value;
+        this.setState({ creators: tempArr });
 
         // change the calunter value
         var newCount = 100;
@@ -31,8 +37,10 @@ export default class Creator extends React.Component {
         this.setState({ count: newCount });
     }
 
-    changeName() {
-
+    changeName(event) {
+        var tempArr = this.state.creators;
+        tempArr[event.target.id].name = event.target.value;
+        this.setState({ creators: tempArr });
     }
     render() {
 
@@ -40,20 +48,21 @@ export default class Creator extends React.Component {
             <div>
                 {this.state.creators.map((content, i) => {
                     return <div className="form-row" key={i} style={{ marginBottom: 16 }}>
-                        <div className="col-md-4">
+                        <div className="col-md-5">
                             {i === 0 ?
                                 <input type="name" className="form-control" value={content.name} readOnly />
-                                : <input type="name" className="form-control" placeholder="username" onChange={this.changeName.bind(this)} />
+                                : <input type="name" className="form-control" placeholder="username" id={i} value={content.name} onChange={this.changeName.bind(this)} />
                             }
                         </div>
-                        <div className="col-md-3">
+                        <div className="col-md-4">
                             {/* {i === 0 ?
                                 <input type="number" value={content.ownership} className="form-control" id="quantity" name="quantity" min="0" max="100" readOnly />
                                 : */}
                             <input type="number" value={content.ownership} id={i} className="form-control" placeholder='00' onChange={this.changeOwnership.bind(this)} />
                             {/* } */}
                         </div>
-                        <div className="col-md-3"> % ownership </div>
+                        <div className="col-md-2"> % credit </div>
+                        {i === 0 ? <div></div> : <div className="col-md-1" style={{ cursor: 'pointer' }} onClick={() => this.deletCreator(i)}> X </div>}
                     </div>
                 }
                 )}
