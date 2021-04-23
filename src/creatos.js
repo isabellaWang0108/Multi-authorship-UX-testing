@@ -21,6 +21,12 @@ export default class Creator extends React.Component {
         var tempArr = this.state.creators;
         tempArr.splice(e, 1);
         this.setState({ creators: tempArr });
+
+        var newCount = 100;
+        for (var i = 0; i < this.state.creators.length; i++) {
+            newCount -= this.state.creators[i].ownership;
+        }
+        this.setState({ count: newCount });
     }
 
     changeOwnership(event) {
