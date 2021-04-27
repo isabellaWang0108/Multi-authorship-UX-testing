@@ -72,7 +72,7 @@ export default class Creator extends React.Component {
                     </div>
                 }
                 )}
-                {this.state.count === 0 ? <p></p> : <b style={this.state.count < 0 ? { color: 'red' } : { color: 'black' }}>You have {this.state.count} credits left. Total credies need to be 100.</b>}
+                {this.state.count === 0 ? <p></p> : (this.state.count < 0 ? <p style={{color:'red'}}>Subtract {0-this.state.count} credits to total 100%</p> : <p style={{color:'red'}}> Add {this.state.count} credits to total 100%</p>)}
 
                 <div style={{ cursor: 'pointer', color: 'blue' }} onClick={() => this.addCreator()} id="add_people">Add a collaborator +</div>
                 <br />
