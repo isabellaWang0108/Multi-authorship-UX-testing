@@ -2,6 +2,9 @@ import React from 'react';
 
 const total = 100;
 var owner_count = 1;
+var creator_name = ["cupcake", "cryptopur", "bluecrab", "lavacake", "cryptobird", "lilygreen"]
+var name_count = 0;
+
 export default class Creator extends React.Component {
 
     state = {
@@ -13,8 +16,9 @@ export default class Creator extends React.Component {
     addCreator() {
         owner_count++;
         this.setState({
-            creators: [...this.state.creators, { name: '', ownership: ' ' }]
+            creators: [...this.state.creators, { name: creator_name[name_count], ownership: ' ' }]
         })
+        name_count++;
     };
 
     deletCreator(e) {
@@ -27,6 +31,7 @@ export default class Creator extends React.Component {
             newCount -= this.state.creators[i].ownership;
         }
         this.setState({ count: newCount });
+        name_count--;
     }
 
     changeOwnership(event) {
@@ -72,7 +77,7 @@ export default class Creator extends React.Component {
                     </div>
                 }
                 )}
-                {this.state.count === 0 ? <p></p> : (this.state.count < 0 ? <p style={{color:'red'}}>Subtract {0-this.state.count} credits to total 100%</p> : <p style={{color:'red'}}> Add {this.state.count} credits to total 100%</p>)}
+                {this.state.count === 0 ? <p></p> : (this.state.count < 0 ? <p style={{ color: 'red' }}>Subtract {0 - this.state.count} credits to total 100%</p> : <p style={{ color: 'red' }}> Add {this.state.count} credits to total 100%</p>)}
 
                 <div style={{ cursor: 'pointer', color: 'blue' }} onClick={() => this.addCreator()} id="add_people">Add a collaborator +</div>
                 <br />
